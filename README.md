@@ -4,8 +4,6 @@ A small, simple hash map implementation in C using open addressing and linear pr
 
 This project is primarily for personal use and learning, but it’s written to be reusable in other C projects.
 
----
-
 ## Features
 
 * String keys (`const char*`)
@@ -14,11 +12,8 @@ This project is primarily for personal use and learning, but it’s written to b
 * Automatic resizing
 * Iteration over all entries
 * Optional:
-
   * Custom hash function
   * Custom value free function
-
----
 
 ## Usage
 
@@ -57,8 +52,6 @@ Include in your code:
 #include "hashmap.h"
 ```
 
----
-
 ## Basic Example
 
 ```c
@@ -81,8 +74,6 @@ int main(void)
 }
 ```
 
----
-
 ## Notes
 
 If a *free function* is provided when creating the hash map, it effectively owns the data added to it, and will call this function every time a deletion is necessary. Otherwise, the values are never directly freed by the hash map.
@@ -92,8 +83,6 @@ A custom *hash function* can be provided as well, though only string keys are su
 The values are not copied, only pointers are stored. On the other hand, the keys are copied internally.
 
 This implementation is not thread-safe, nor is it particularly performant.
-
----
 
 ## Running Tests
 
