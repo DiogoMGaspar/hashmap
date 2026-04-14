@@ -6,20 +6,17 @@ This project is primarily for personal use and learning, but it’s written to b
 
 ## Features
 
-* String keys (`const char*`)
-* Generic values (`void*`)
-* Open addressing with linear probing
+* String keys
+* Generic values
 * Automatic resizing
 * Iteration over all entries
 * Optional:
   * Custom hash function
   * Custom value free function
 
-## Usage
+## How to use
 
-### 1. Add to Your Project
-
-#### Option A — Copy
+### Option A — Copy
 
 Copy these files into your project:
 
@@ -31,10 +28,10 @@ src/hashmap.h
 Then include in your build:
 
 ```sh
-gcc your_code.c hashmap.c -o your_program
+gcc your_code.c path/to/hashmap.c -o your_program
 ```
 
-#### Option B — Git Submodule
+### Option B — Git Submodule
 
 ```sh
 git submodule add <your-repo-url> external/hashmap
@@ -57,7 +54,6 @@ Include in your code:
 ```c
 #include "hashmap.h"
 #include <stdio.h>
-#include <stdlib.h>
 
 int main(void)
 {
@@ -76,13 +72,13 @@ int main(void)
 
 ## Notes
 
-If a *free function* is provided when creating the hash map, it effectively owns the data added to it, and will call this function every time a deletion is necessary. Otherwise, the values are never directly freed by the hash map.
+If a *free function* is provided when creating the hash map, the map takes ownership of the stored values. This function will be called whenever a value is removed, replaced, or when the map is freed. If no free function is provided, the user is responsible for managing the lifetime of stored values.
 
-A custom *hash function* can be provided as well, though only string keys are supported. The default hash function is FNV1-a.
+A custom *hash function* can be provided as well, though only string keys are supported. The default hash function is FNV-1a.
 
 The values are not copied, only pointers are stored. On the other hand, the keys are copied internally.
 
-This implementation is not thread-safe, nor is it particularly performant.
+This implementation is not thread-safe and is designed for simplicity over maximum performance.
 
 ## Running Tests
 

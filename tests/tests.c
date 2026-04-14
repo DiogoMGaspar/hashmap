@@ -143,7 +143,6 @@ void test_tombstone_reuse(void)
 
     TEST_ASSERT_TRUE(hmap_remove(map, "a"));
 
-    // should reuse tombstone
     TEST_ASSERT_TRUE(hmap_put(map, "c", "3"));
 
     TEST_ASSERT_NOT_NULL(hmap_get(map, "c"));
@@ -183,12 +182,10 @@ void test_free_function_called(void)
 
     hmap_remove(map, "a");
 
-    // one free from remove
     TEST_ASSERT_EQUAL_INT(1, free_counter);
 
     hmap_free(map);
 
-    // second free from remaining element
     TEST_ASSERT_EQUAL_INT(2, free_counter);
 }
 
@@ -202,7 +199,7 @@ void test_replace_calls_free(void)
     char* val2 = malloc(10);
 
     hmap_put(map, "a", val1);
-    hmap_put(map, "a", val2); // overwrite
+    hmap_put(map, "a", val2);
 
     TEST_ASSERT_EQUAL_INT(1, free_counter);
 
@@ -210,10 +207,6 @@ void test_replace_calls_free(void)
 
     TEST_ASSERT_EQUAL_INT(2, free_counter);
 }
-
-// --------------------------------------------------
-// Main
-// --------------------------------------------------
 
 int main(void)
 {
